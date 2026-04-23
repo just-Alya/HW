@@ -1,0 +1,9 @@
+int find_max(int_vector& v) {
+    int maxVal = v.data[0]; 
+    for (int i = 1; i < v.size; i++) {
+        if (v.data[i] > maxVal) {
+            maxVal = v.data[i];
+        }
+    }
+    return maxVal;
+}
