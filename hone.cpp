@@ -1,17 +1,23 @@
 #include <iostream>
-#include <locale>
-int main()
-{
-int min, max, sum=0, i;
-	std::cin>>min;
-	std::cin>>max;
-i=min;
-for(i; i<=max;i++)
-{
-if(i % 2 == 0)
-{
-sum=sum+i;
-}
-}
-std::cout<<sum;
+#include <string>
+
+using namespace std;
+
+struct Book {
+    string title;
+    string author;
+    int year;
+};
+
+int main() {
+    Book b;
+    cout << "Enter title: ";
+    getline(cin, b.title);
+    cout << "Enter author: ";
+    getline(cin, b.author);
+    cout << "Enter year: ";
+    cin >> b.year;
+
+    cout << "\"" << b.title << "\" by " << b.author << " (" << b.year << ")" << endl;
+    return 0;
 }
