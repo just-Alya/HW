@@ -1,0 +1,8 @@
+template<typename T>
+int recursive_count(vector<T>& v, T value, int index) {
+    if (index == v.size()) {
+        return 0;
+    }
+    int count = (v[index] == value) ? 1 : 0;
+    return count + recursive_count(v, value, index + 1);
+}
