@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+struct Student {
+    string name;
+    Date birthDate; // Вкладена структура
+};
+
+int main() {
+    Student s;
+
+    cout << "Enter name: ";
+    cin >> s.name;
+    cout << "Enter day: ";
+    cin >> s.birthDate.day;
+    cout << "Enter month: ";
+    cin >> s.birthDate.month;
+    cout << "Enter year: ";
+    cin >> s.birthDate.year;
+
+    // Форматування дати із заповненням нулями (наприклад, 03)
+    cout << "\n" << s.name << " was born on " 
+         << setfill('0') << setw(2) << s.birthDate.day << "."
+         << setfill('0') << setw(2) << s.birthDate.month << "."
+         << s.birthDate.year << endl;
+
+    return 0;
+}
