@@ -1,0 +1,7 @@
+// O(n^2): n^2 + 3n + 1 <= n^2 + 3n^2 + n^2 = 5n^2
+int C_O = 5;
+int n0_O = 1;
+
+// Omega(n^2): n^2 + 3n + 1 >= 1 * n^2
+int C_Omega = 1;
+int n0_Omega = 1;
