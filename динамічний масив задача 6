@@ -1,0 +1,12 @@
+void insert(int index, int value) {
+    // 1. Зсуваємо елементи вправо, починаючи з кінця
+    for (int i = size; i > index; i--) {
+        data[i] = data[i - 1];
+    }
+    
+    // 2. Вставляємо нове значення
+    data[index] = value;
+    
+    // 3. Збільшуємо розмір
+    size++;
+}
