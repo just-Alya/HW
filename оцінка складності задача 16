@@ -1,0 +1,8 @@
+/*
+Обчислити: lim (x->inf) (log x) / x^2
+За правилом Лопіталя (невизначеність inf/inf):
+lim (x->inf) (log x)' / (x^2)' =
+lim (x->inf) (1/x) / (2x) =
+lim (x->inf) 1 / (2x^2) = 0
+*/
+double result = 0;
