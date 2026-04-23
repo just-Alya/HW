@@ -1,0 +1,16 @@
+template<typename T>
+void recursive_selection_sort(vector<T>& v, int start) {
+    if (start >= v.size() - 1) {
+        return;
+    }
+
+    int min_idx = start;
+    for (int i = start + 1; i < v.size(); ++i) {
+        if (v[i] < v[min_idx]) {
+            min_idx = i;
+        }
+    }
+
+    swap(v[start], v[min_idx]);
+    recursive_selection_sort(v, start + 1);
+}
