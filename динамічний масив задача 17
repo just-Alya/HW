@@ -1,0 +1,16 @@
+int main() {
+    int_vector v;
+    int num;
+    
+    while (cin >> num && num != 0) {
+        v.push_back(num);
+    }
+    
+    v.reverse();
+    
+    for (int i = 0; i < v.size; i++) {
+        cout << v.data[i] << " ";
+    }
+    
+    return 0;
+}
