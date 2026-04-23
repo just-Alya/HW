@@ -1,0 +1,18 @@
+// Fragment 1: O(n)
+for (int i = 0; i < n; ++i) {
+    // O(1)
+}
+
+// Fragment 2: O(n^2)
+for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < n; ++j) {
+        // O(1)
+    }
+}
+
+// Fragment 3: O(1)
+for (int i = 0; i < 1000; ++i) {
+    // O(1)
+}
+
+// Загальна складність: O(n^2)
