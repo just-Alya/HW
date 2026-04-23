@@ -1,0 +1,7 @@
+void print_binary(int n) {
+    if (n == 0) {
+        return;
+    }
+    print_binary(n / 2);
+    cout << n % 2;
+}
