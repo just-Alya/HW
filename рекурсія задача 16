@@ -1,0 +1,16 @@
+void subsets(vector<int>& v, vector<int>& current, int index) {
+    if (index == v.size()) {
+        cout << "{";
+        for (size_t i = 0; i < current.size(); ++i) {
+            cout << current[i] << (i == current.size() - 1 ? "" : ",");
+        }
+        cout << "} ";
+        return;
+    }
+
+    subsets(v, current, index + 1);
+
+    current.push_back(v[index]);
+    subsets(v, current, index + 1);
+    current.pop_back();
+}
