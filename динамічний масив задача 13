@@ -1,0 +1,13 @@
+void unique() {
+    if (size <= 1) return;
+
+    int newSize = 1; // Перший елемент завжди залишається
+    for (int i = 1; i < size; i++) {
+        // Якщо поточний елемент не такий як попередній — зберігаємо його
+        if (data[i] != data[i - 1]) {
+            data[newSize] = data[i];
+            newSize++;
+        }
+    }
+    size = newSize; // Оновлюємо розмір вектора
+}
