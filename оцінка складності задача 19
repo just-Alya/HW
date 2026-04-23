@@ -1,0 +1,12 @@
+/*
+a) f(n) = n^2, g(n) = n^3
+   n^2 = O(n^3) (оскільки n^2 <= 1 * n^3 для n >= 1)
+
+b) f(n) = 2n + 100, g(n) = n
+   f(n) = Theta(n) (також є O(n) та Omega(n))
+
+c) f(n) = log2(n), g(n) = log10(n)
+   За формулою переходу: log2(n) = log10(n) / log10(2)
+   log2(n) = constant * log10(n)
+   f(n) = Theta(g(n))
+*/
