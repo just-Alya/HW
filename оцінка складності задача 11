@@ -1,0 +1,6 @@
+/*
+n^2 <= C * n
+n <= C
+n -> inf, C = const
+*/
+bool is_true = false;
