@@ -1,0 +1,11 @@
+template<typename T>
+void bubble_sort_range(vector<T>& v, int left, int right) {
+    int n = right - left + 1;
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = left; j < right - i; ++j) {
+            if (v[j] > v[j + 1]) {
+                swap(v[j], v[j + 1]);
+            }
+        }
+    }
+}
