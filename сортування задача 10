@@ -1,0 +1,18 @@
+template<typename T>
+void quick_sort_recursive(vector<T>& v, int low, int high, int& count) {
+    count++;
+    if (low < high) {
+        int pi = partition_first(v, low, high);
+        quick_sort_recursive(v, low, pi - 1, count);
+        quick_sort_recursive(v, pi + 1, high, count);
+    }
+}
+
+template<typename T>
+int quick_sort_count(vector<T>& v) {
+    int count = 0;
+    if (!v.empty()) {
+        quick_sort_recursive(v, 0, v.size() - 1, count);
+    }
+    return count;
+}
