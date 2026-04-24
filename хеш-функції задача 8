@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    // Використовуємо наближену формулу парадоксу днів народження: k ≈ sqrt(m)
+    
+    // a) m = 1000
+    long long m_a = 1000;
+    double k_a = sqrt(m_a);
+    
+    // b) m = 1000000
+    long long m_b = 1000000;
+    double k_b = sqrt(m_b);
+
+    cout << "Approximate number of elements for >50% collision probability:" << endl;
+    cout << "a) For m = 1000:    k \u2248 " << round(k_a) << endl;
+    cout << "b) For m = 1000000: k \u2248 " << round(k_b) << endl;
+
+    return 0;
+}
