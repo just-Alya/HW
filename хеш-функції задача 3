@@ -1,0 +1,26 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int hash_linear(int x, int a, int b, int p, int m) {
+    // h(x) = ((a * x + b) mod p) mod m
+    long long val = (1LL * a * x + b) % p;
+    if (val < 0) val += p; 
+    return (int)(val % m);
+}
+
+int main() {
+    int a = 3, b = 7, p = 101, m = 10;
+
+    cout << "Тестування лінійного хешу (0...9):" << endl;
+    cout << "--------------------------------" << endl;
+    cout << " x  |  h(x)" << endl;
+    cout << "----|-------" << endl;
+    
+    for (int x = 0; x <= 9; x++) {
+        cout << setw(2) << x << "  |  " << hash_linear(x, a, b, p, m) << endl;
+    }
+
+    return 0;
+}
