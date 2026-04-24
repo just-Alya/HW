@@ -1,0 +1,45 @@
+template<typename T>
+void merge_ranges(vector<T>& v, int left, int mid, int right) {
+    vector<T> L(v.begin() + left, v.begin() + mid + 1);
+    vector<T> R(v.begin() + mid + 1, v.begin() + right + 1);
+
+    int i = 0, j = 0, k = left;
+    while (i < L.size() && j < R.size()) {
+        if (L[i] <= R[j]) v[k++] = L[i++];
+        else v[k++] = R[j++];
+    }
+    while (i < L.size()) v[k++] = L[i++];
+    while (j < R.size()) v[k++] = R[j++];
+}
+
+template<typename T>
+void natural_merge_sort(vector<T>& v) {
+    if (v.size() < 2) return;
+
+    bool sorted = false;
+    while (!sorted) {
+        sorted = true;
+        int left = 0;
+
+        while (left < v.size()) {
+            int mid = left;
+            while (mid + 1 < v.size() && v[mid] <= v[mid + 1]) {
+                mid++;
+            }
+
+            if (mid == v.size() - 1) {
+                if (left == 0) return;
+                break;
+            }
+
+            int right = mid + 1;
+            while (right + 1 < v.size() && v[right] <= v[right + 1]) {
+                right++;
+            }
+
+            merge_ranges(v, left, mid, right);
+            sorted = false;
+            left = right + 1;
+        }
+    }
+}
