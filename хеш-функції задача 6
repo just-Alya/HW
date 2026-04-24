@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    int n = 20; // keys
+    int m = 8;  // buckets
+
+    int min_in_fullest = ceil((double)n / m);
+    cout << "a) Minimal number of keys in the fullest bucket: " << min_in_fullest << endl;
+
+    cout << "b) Distribution example (max 3 per bucket): ";
+    vector<int> buckets(m, 0);
+    for (int i = 0; i < n; i++) {
+        buckets[i % m]++;
+    }
+
+    bool possible = true;
+    for (int count : buckets) {
+        cout << count << " ";
+        if (count > 3) possible = false;
+    }
+    
+    cout << "\nPossible to have no more than 3: " << (possible ? "Yes" : "No") << endl;
+
+    return 0;
+}
