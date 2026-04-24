@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct student {
+    int id;
+    int age;
+    double grade;
+};
+
+bool compare_by_grade_desc(const student& a, const student& b) {
+    return a.grade > b.grade;
+}
+
+bool compare_by_age(const student& a, const student& b) {
+    return a.age < b.age;
+}
+
+int main() {
+    vector<student> students = {
+        {1, 20, 4.5},
+        {2, 18, 5.0},
+        {3, 19, 3.8}
+    };
+
+    // a) за оцінкою (grade) за спаданням
+    sort(students.begin(), students.end(), compare_by_grade_desc);
+
+    // b) за віком (age) за зростанням
+    sort(students.begin(), students.end(), compare_by_age);
+
+    return 0;
+}
