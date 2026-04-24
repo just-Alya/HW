@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+
+struct point {
+    int x, y, z;
+};
+
+std::ostream& operator<<(std::ostream& out, const point& p) {
+    out << "(" << p.x << ", " << p.y << ", " << p.z << ")";
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, point& p) {
+    in >> p.x >> p.y >> p.z;
+    return in;
+}
+
+int main() {
+    // 1. Заповнення зі списку ініціалізації
+    std::vector<point> points = {{0, 0, 0}, {1, 1, 1}, {-5, 3, 2}};
+
+    // 2. Виведення всіх точок
+    std::cout << "Список точок:" << std::endl;
+    for (const auto& p : points) {
+        std::cout << p << " ";
+    }
+    std::cout << "\n" << std::endl;
+
+    // 3. Додавання нової точки через введення
+    point new_point;
+    std::cout << "Введіть координати нової точки (x y z): ";
+    std::cin >> new_point;
+    points.push_back(new_point);
+
+    // 4. Виведення остаточного списку
+    std::cout << "\nОновлений список:" << std::endl;
+    for (const auto& p : points) {
+        std::cout << p << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
