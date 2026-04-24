@@ -1,0 +1,20 @@
+template<typename T>
+T quick_select(vector<T>& v, int low, int high, int k) {
+    if (low == high) return v[low];
+
+    int pi = partition_first(v, low, high);
+
+    if (pi == k) {
+        return v[pi];
+    } else if (k < pi) {
+        return quick_select(v, low, pi - 1, k);
+    } else {
+        return quick_select(v, pi + 1, high, k);
+    }
+}
+
+template<typename T>
+T quick_select(vector<T>& v, int k) {
+    // k - це індекс (наприклад, k=0 для найменшого)
+    return quick_select(v, 0, v.size() - 1, k);
+}
