@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int students = 13;
+    int months = 12;
+
+    cout << "Number of students: " << students << endl;
+    cout << "Number of months: " << months << endl;
+
+    if (students > months) {
+        cout << "Proof: By the Pigeonhole Principle, if n+1 items are put into n containers, "
+             << "at least one container must contain more than one item." << endl;
+        cout << "Since 13 > 12, at least two students must share a birth month." << endl;
+    }
+
+    return 0;
+}
