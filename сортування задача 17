@@ -1,0 +1,94 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <chrono>
+#include <random>
+#include <iomanip>
+
+using namespace std;
+using namespace std::chrono;
+
+// Функції сортування
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (arr[j] > arr[j + 1]) swap(arr[j], arr[j + 1]);
+}
+
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+        int min_idx = i;
+        for (int j = i + 1; j < n; j++)
+            if (arr[j] < arr[min_idx]) min_idx = j;
+        swap(arr[i], arr[min_idx]);
+    }
+}
+
+void insertionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; i++) {
+        int key = arr[i], j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return (i + 1);
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    vector<int> sizes = {100, 1000, 10000};
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(1, 100000);
+
+    for (int n : sizes) {
+        cout << "\n--- Size n = " << n << " ---" << endl;
+        vector<int> base_vec(n);
+        for (int i = 0; i < n; i++) base_vec[i] = dis(gen);
+
+        auto run_test = [&](string name, void (*sort_func)(vector<int>&)) {
+            vector<int> copy = base_vec;
+            auto start = high_resolution_clock::now();
+            sort_func(copy);
+            auto end = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(end - start);
+            cout << left << setw(15) << name << ": " << duration.count() << " us" << endl;
+        };
+
+        run_test("Bubble", bubbleSort);
+        run_test("Selection", selectionSort);
+        run_test("Insertion", insertionSort);
+        
+        vector<int> qs_copy = base_vec;
+        auto start = high_resolution_clock::now();
+        quickSort(qs_copy, 0, n - 1);
+        auto end = high_resolution_clock::now();
+        cout << left << setw(15) << "QuickSort" << ": " 
+             << duration_cast<microseconds>(end - start).count() << " us" << endl;
+    }
+    return 0;
+}
