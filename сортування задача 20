@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct point {
+    int x;
+    int y;
+};
+
+bool compare_by_distance(const student& a, const student& b) {
+    // Порівнюємо квадрати відстаней: x^2 + y^2
+    int distA = a.x * a.x + a.y * a.y;
+    int distB = b.x * b.x + b.y * b.y;
+    return distA < distB;
+}
+
+int main() {
+    vector<point> points = {
+        {3, 4},  // dist^2 = 25
+        {1, 1},  // dist^2 = 2
+        {0, 5}   // dist^2 = 25
+    };
+
+    sort(points.begin(), points.end(), compare_by_distance);
+
+    return 0;
+}
