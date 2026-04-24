@@ -1,0 +1,28 @@
+template<typename T>
+vector<T> merge_vectors(const vector<T>& a, const vector<T>& b) {
+    vector<T> result;
+    result.reserve(a.size() + b.size());
+    
+    size_t i = 0, j = 0;
+    
+    while (i < a.size() && j < b.size()) {
+        if (a[i] <= b[j]) {
+            result.push_back(a[i]);
+            i++;
+        } else {
+            result.push_back(b[j]);
+            j++;
+        }
+    }
+    
+    while (i < a.size()) {
+        result.push_back(a[i]);
+        i++;
+    }
+    while (j < b.size()) {
+        result.push_back(b[j]);
+        j++;
+    }
+    
+    return result;
+}
