@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+int main() {
+    int keys[] = {15, 27, 44, 11, 33, 0, -3};
+    map<int, vector<int>> table;
+
+    for (int x : keys) {
+        int h = x % 11;
+        if (h < 0) h += 11; 
+        table[h].push_back(x);
+        cout << "h(" << x << ") = " << h << endl;
+    }
+
+    cout << "\nКолізії:" << endl;
+    for (auto const& [hash, values] : table) {
+        if (values.size() > 1) {
+            cout << "Хеш " << hash << ": ";
+            for (int v : values) cout << v << " ";
+            cout << endl;
+        }
+    }
+    return 0;
+}
