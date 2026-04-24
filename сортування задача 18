@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+#include <chrono>
+
+using namespace std;
+using namespace std::chrono;
+
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return (i + 1);
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    int n = 5000;
+    vector<int> worst_case_arr(n);
+    
+    for (int i = 0; i < n; i++) {
+        worst_case_arr[i] = i + 1;
+    }
+
+    cout << "Testing Quicksort with worst-case scenario (n=" << n << ")..." << endl;
+    
+    auto start = high_resolution_clock::now();
+    quickSort(worst_case_arr, 0, n - 1);
+    auto end = high_resolution_clock::now();
+    
+    auto duration = duration_cast<microseconds>(end - start);
+    cout << "Time: " << duration.count() << " us" << endl;
+
+    cout << "\nExplanation:" << endl;
+    cout << "When the pivot is always the largest element (as in a sorted array), " << endl;
+    cout << "the partition step becomes highly unbalanced, creating subproblems " << endl;
+    cout << "of sizes 0 and n-1. This leads to a recursion depth of n, resulting " << endl;
+    cout << "in O(n^2) time complexity instead of the average O(n log n)." << endl;
+
+    return 0;
+}
