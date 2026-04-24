@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+int calculate_poly_hash(string s, int p, int m) {
+    long long hash_value = 0;
+    long long p_pow = 1;
+    for (char c : s) {
+        int s_i = c - 'a' + 1; // a=1, b=2...
+        hash_value = (hash_value + s_i * p_pow) % m;
+        p_pow = (p_pow * p) % m;
+    }
+    return (int)hash_value;
+}
+
+int main() {
+    int p = 31, m = 100;
+    int h1 = calculate_poly_hash("bad", p, m);
+    int h2 = calculate_poly_hash("dab", p, m);
+
+    cout << "h(\"bad\") = " << h1 << endl;
+    cout << "h(\"dab\") = " << h2 << endl;
+    cout << "Збігаються: " << (h1 == h2 ? "Так" : "Ні") << endl;
+
+    return 0;
+}
