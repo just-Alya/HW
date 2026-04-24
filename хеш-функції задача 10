@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+struct point {
+    int x;
+    int y;
+};
+
+int hash_point(const point& p, int m) {
+    // Використовуємо комбінацію з простим числом, щоб (1,2) і (2,1) мали різні хеші
+    // h = (x * P + y) mod m
+    const int P = 31;
+    long long h = (1LL * p.x * P + p.y) % m;
+    if (h < 0) h += m;
+    return (int)h;
+}
+
+int main() {
+    int m = 100;
+    point p1 = {1, 2};
+    point p2 = {2, 1};
+
+    int h1 = hash_point(p1, m);
+    int h2 = hash_point(p2, m);
+
+    cout << "Point (1, 2) hash: " << h1 << endl;
+    cout << "Point (2, 1) hash: " << h2 << endl;
+    cout << "Hashes are different: " << (h1 != h2 ? "Yes" : "No") << endl;
+
+    return 0;
+}
