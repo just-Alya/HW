@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int hash_A(string s, int m) {
+    int sum = 0;
+    for (char c : s) sum += c;
+    return sum % m;
+}
+
+int hash_B(string s, int m, int p = 31) {
+    long long hash_val = 0;
+    long long p_pow = 1;
+    for (char c : s) {
+        int val = c - 'a' + 1;
+        hash_val = (hash_val + val * p_pow) % m;
+        p_pow = (p_pow * p) % m;
+    }
+    return (int)hash_val;
+}
+
+int main() {
+    int m = 100;
+    vector<string> tests = {"abc", "bca", "cab"};
+
+    cout << "Function A (Sum of codes):" << endl;
+    for (const string& s : tests) {
+        cout << "h(\"" << s << "\") = " << hash_A(s, m) << endl;
+    }
+
+    cout << "\nFunction B (Polynomial):" << endl;
+    for (const string& s : tests) {
+        cout << "h(\"" << s << "\") = " << hash_B(s, m) << endl;
+    }
+
+    cout << "\nConclusion: Function B is better. "
+         << "Function A creates collisions for any anagram (same characters in different order), "
+         << "while Function B accounts for character positions." << endl;
+
+    return 0;
+}
