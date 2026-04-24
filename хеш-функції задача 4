@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int m = 5;
+    // Шукаємо три числа x, де x % 5 == 1 (наприклад)
+    vector<int> collisions = {1, 6, 11};
+
+    cout << "Hash function: h(x) = x % 5" << endl;
+    for (int x : collisions) {
+        cout << "h(" << x << ") = " << x % m << endl;
+    }
+
+    cout << "\nExplanation: This is always possible due to the Pigeonhole Principle. "
+         << "Since there are infinitely many natural numbers and only 5 possible hash values, "
+         << "multiple keys must inevitably map to the same value." << endl;
+
+    return 0;
+}
