@@ -1,0 +1,23 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    double m = 100.0;
+    int k = 5;
+
+    // Ймовірність відсутності колізій: P = (m/m) * ((m-1)/m) * ((m-2)/m) * ...
+    double p_no_collision = 1.0;
+    for (int i = 0; i < k; ++i) {
+        p_no_collision *= (m - i) / m;
+    }
+
+    double p_collision = 1.0 - p_no_collision;
+
+    cout << fixed << setprecision(4);
+    cout << "Probability of NO collision: " << p_no_collision << " (" << p_no_collision * 100 << "%)" << endl;
+    cout << "Probability of collision: " << p_collision << " (" << p_collision * 100 << "%)" << endl;
+
+    return 0;
+}
