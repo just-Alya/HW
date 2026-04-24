@@ -1,0 +1,28 @@
+template<typename T>
+void merge(vector<T>& v, int l, int m, int r) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    vector<T> L(n1), R(n2);
+    for (int i = 0; i < n1; i++) L[i] = v[l + i];
+    for (int j = 0; j < n2; j++) R[j] = v[m + 1 + j];
+
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) v[k++] = L[i++];
+        else v[k++] = R[j++];
+    }
+    while (i < n1) v[k++] = L[i++];
+    while (j < n2) v[k++] = R[j++];
+}
+
+template<typename T>
+void merge_sort_iterative(vector<T>& v) {
+    int n = v.size();
+    for (int curr_size = 1; curr_size <= n - 1; curr_size = 2 * curr_size) {
+        for (int left_start = 0; left_start < n - 1; left_start += 2 * curr_size) {
+            int mid = min(left_start + curr_size - 1, n - 1);
+            int right_end = min(left_start + 2 * curr_size - 1, n - 1);
+            merge(v, left_start, mid, right_end);
+        }
+    }
+}
