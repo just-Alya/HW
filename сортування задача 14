@@ -1,0 +1,38 @@
+template<typename T>
+int merge_and_count(vector<T>& v, int left, int mid, int right) {
+    vector<T> leftPart(v.begin() + left, v.begin() + mid + 1);
+    vector<T> rightPart(v.begin() + mid + 1, v.begin() + right + 1);
+
+    int i = 0, j = 0, k = left, inversions = 0;
+
+    while (i < leftPart.size() && j < rightPart.size()) {
+        if (leftPart[i] <= rightPart[j]) {
+            v[k++] = leftPart[i++];
+        } else {
+            v[k++] = rightPart[j++];
+            inversions += (leftPart.size() - i);
+        }
+    }
+    while (i < leftPart.size()) v[k++] = leftPart[i++];
+    while (j < rightPart.size()) v[k++] = rightPart[j++];
+
+    return inversions;
+}
+
+template<typename T>
+int count_inversions_rec(vector<T>& v, int left, int right) {
+    int count = 0;
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        count += count_inversions_rec(v, left, mid);
+        count += count_inversions_rec(v, mid + 1, right);
+        count += merge_and_count(v, left, mid, right);
+    }
+    return count;
+}
+
+template<typename T>
+int count_inversions(vector<T>& v) {
+    if (v.empty()) return 0;
+    return count_inversions_rec(v, 0, v.size() - 1);
+}
